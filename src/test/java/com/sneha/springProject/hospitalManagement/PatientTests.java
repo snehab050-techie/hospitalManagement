@@ -8,16 +8,28 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.sneha.springProject.hospitalManagement.entity.Patient;
 import com.sneha.springProject.hospitalManagement.repository.PatientRepository;
+import com.sneha.springProject.hospitalManagement.service.PatientService;
 
 @SpringBootTest
 public class PatientTests {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private PatientService patientService;
     
     @Test
     public void testPatientRepository(){
         List<Patient> patients =patientRepository.findAll();
         System.out.println(patients);
+    }
+
+    @Test
+    public void getPatientByIdTest(){
+    
+     Patient p = patientService.getPatientById(1L);
+     System.out.println(p);
+       
     }
 }
