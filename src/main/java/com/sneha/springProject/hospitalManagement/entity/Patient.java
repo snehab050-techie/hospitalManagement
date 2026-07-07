@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Table(
-    name = "patient_tbl",
+    name = "patient",
     uniqueConstraints = {
         // @UniqueConstraint(name = "email_unique", columnNames = "email"),
         @UniqueConstraint(name = "name_unique", columnNames = "name"),
@@ -38,7 +40,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "patient_name", nullable = false,length = 40)
+    @Column(nullable = false,length = 40)
     // now this will create a coulmn named "patient_name" in the DB but the older column name "name" 
     // will still be there in the DB, so we need to drop the old column "name" from the DB and then 
     // run the application again to create the new column "patient_name" in the DB
@@ -46,8 +48,8 @@ public class Patient {
     // tools like Flyway and Liquibase, which can be used to manage the database schema changes in a more controlled way.
     private String name;
 
-    // @ToString.Exclude
-    private LocalDate birthDate;
+    @ToString.Exclude
+    private LocalDate birth_date;
 
     @Column(unique =true, nullable = false)
     private String email;
@@ -57,6 +59,10 @@ public class Patient {
     @CreationTimestamp // this annotation will automatically set the value of this field to the current timestamp when the entity is created.
     @Column(updatable = false) // this field will not be updated once it is set, it will only be set when the entity is created.
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    // this annotation will tell hibernate to store the enum value as a string in the database, instead of the default ordinal value.
+    private BloodGroupType blood_group;
 
     // @Override
     // public String toString() {
