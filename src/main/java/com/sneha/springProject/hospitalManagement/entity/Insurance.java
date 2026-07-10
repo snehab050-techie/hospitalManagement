@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +39,8 @@ public class Insurance {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    //Bidirectionla mapping required for fetching Pateint details from Insurance entity
+    @OneToOne(mappedBy = "insurance")
+    private Patient patient; // inverse side of relationship
 }

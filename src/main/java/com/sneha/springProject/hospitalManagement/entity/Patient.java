@@ -74,6 +74,6 @@ public class Patient {
 
     @OneToOne
     @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
-    private Insurance insurance;
+    private Insurance insurance; //Owning side of relationship
 
 }
