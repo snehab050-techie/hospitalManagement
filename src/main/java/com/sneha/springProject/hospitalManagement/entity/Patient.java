@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
@@ -69,5 +71,9 @@ public class Patient {
     //     return "Patient [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", email=" + email + ", gender="
     //             + gender + "]";
     // }
+
+    @OneToOne
+    @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
+    private Insurance insurance;
 
 }
