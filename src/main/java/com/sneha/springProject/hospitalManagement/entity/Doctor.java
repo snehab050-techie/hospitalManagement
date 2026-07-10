@@ -1,5 +1,6 @@
 package com.sneha.springProject.hospitalManagement.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +38,7 @@ public class Doctor{
     private String email;
 
     @OneToMany(mappedBy = "doctor")
-    private List<Appointment> appointment;
+    private List<Appointment> appointments = new ArrayList<>();
     //inverse side of relationship, as doctor can have multiple appointments, so we need to use List here.
 
     @ManyToMany(mappedBy = "doctors")

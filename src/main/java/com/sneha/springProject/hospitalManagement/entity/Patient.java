@@ -2,14 +2,17 @@ package com.sneha.springProject.hospitalManagement.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -74,12 +77,13 @@ public class Patient {
     //             + gender + "]";
     // }
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
     private Insurance insurance; //Owning side of relationship
 
-    @OneToMany(mappedBy = "patient")
-    private List<Appointment> appointments; //inverse side of relationship, as patient can have multiple appointments, so we need to use List here.
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
+    @ToString.Exclude
+    private List<Appointment> appointments = new ArrayList<>(); //inverse side of relationship, as patient can have multiple appointments, so we need to use List here.
 
     // @OneToMany = we read this like - one patient to many appointments
     // Identify which is owning side and another would be inverse side use mappedBy for inverse
