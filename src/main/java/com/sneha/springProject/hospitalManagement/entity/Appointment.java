@@ -35,4 +35,8 @@ public class Appointment {
     @JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false)
     //nullable is false because an appointment cannot exist without a patient, so we need to make sure that the patient_id is always present in the appointment table.
     private Patient patient; //owning side of relationship as appointement cannot exist without patient.
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false)
+    private Doctor doctor; //owning side of relationship as appointement cannot exist without doctor.
 }

@@ -82,4 +82,6 @@ public class Patient {
     private List<Appointment> appointments; //inverse side of relationship, as patient can have multiple appointments, so we need to use List here.
 
     // @OneToMany = we read this like - one patient to many appointments
+    // Identify which is owning side and another would be inverse side use mappedBy for inverse
+    // We identify owning side by checking if it can exist without the other entity
 }
