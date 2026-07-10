@@ -1,12 +1,15 @@
 package com.sneha.springProject.hospitalManagement.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,5 +39,8 @@ public class Doctor{
     @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointment;
     //inverse side of relationship, as doctor can have multiple appointments, so we need to use List here.
+
+    @ManyToMany(mappedBy = "doctors")
+    private Set<Department> departments = new HashSet<>();
 
 }
