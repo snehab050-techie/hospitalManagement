@@ -24,9 +24,7 @@ public class PatientTests {
     @Test
     public void testPatientRepository(){
         List<Patient> patients =patientRepository.findAll();
-        for(Patient p: patients){
-            System.out.println(p);
-        }
+        System.out.println(patients);
     }
 
     @Test

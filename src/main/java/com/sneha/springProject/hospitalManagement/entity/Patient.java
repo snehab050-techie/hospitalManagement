@@ -81,8 +81,7 @@ public class Patient {
     @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
     private Insurance insurance; //Owning side of relationship
 
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Appointment> appointments = new ArrayList<>(); //inverse side of relationship, as patient can have multiple appointments, so we need to use List here.
 
     // @OneToMany = we read this like - one patient to many appointments
