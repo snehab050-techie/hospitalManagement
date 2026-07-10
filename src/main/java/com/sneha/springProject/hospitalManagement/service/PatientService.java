@@ -1,5 +1,7 @@
 package com.sneha.springProject.hospitalManagement.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.sneha.springProject.hospitalManagement.entity.Patient;
@@ -36,6 +38,5 @@ public class PatientService {
 
             return p1;
         }
-
         
 }
