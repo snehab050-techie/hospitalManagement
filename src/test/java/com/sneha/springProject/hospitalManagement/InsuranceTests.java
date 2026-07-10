@@ -34,6 +34,9 @@ public class InsuranceTests {
         
         Patient patient = insuranceService.assignInsurancetoPatient(insurance, 1L);
         System.out.println(patient);
+
+        Patient updatedPatient = insuranceService.disassociatePatientFromInsurance(patient.getId());
+        System.out.println(updatedPatient);
     }
 
     @Test

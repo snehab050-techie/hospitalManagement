@@ -77,7 +77,7 @@ public class Patient {
     //             + gender + "]";
     // }
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
     private Insurance insurance; //Owning side of relationship
 

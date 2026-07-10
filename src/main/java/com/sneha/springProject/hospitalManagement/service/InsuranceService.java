@@ -29,4 +29,14 @@ public class InsuranceService {
 
        return patient;
     } 
+
+    @Transactional
+    public Patient disassociatePatientFromInsurance(Long patientId){
+
+        Patient patient = patientRepository.findById(patientId).orElseThrow();
+        patient.setInsurance(null);
+
+        return patient;
+        
+    }
 }
