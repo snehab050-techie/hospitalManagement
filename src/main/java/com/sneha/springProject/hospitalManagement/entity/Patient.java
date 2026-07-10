@@ -2,6 +2,7 @@ package com.sneha.springProject.hospitalManagement.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -76,4 +78,8 @@ public class Patient {
     @JoinColumn(name = "patient_insurance_id", referencedColumnName = "id")
     private Insurance insurance; //Owning side of relationship
 
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments; //inverse side of relationship, as patient can have multiple appointments, so we need to use List here.
+
+    // @OneToMany = we read this like - one patient to many appointments
 }
